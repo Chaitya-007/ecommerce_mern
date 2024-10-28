@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "ecommerce rest api",
   "dependencies": {
+    "colors": "^1.4.0",
     "express": "^4.21.1"
   }
 }
