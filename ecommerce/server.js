@@ -20,5 +20,8 @@ const PORT = process.env.PORT || 8080;
 // For Angular => PORT = 4200
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`.bgCyan.white);
+  console.log(
+    `Server is running on ${process.env.DEV_MODE} on http://localhost:${PORT}`
+      .bgCyan.white
+  );
 });
