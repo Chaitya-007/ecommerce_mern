@@ -1,4 +1,5 @@
 const express = require("express");
+const colors = require("colors");
 
 // rest object
 const app = express();
@@ -17,5 +18,5 @@ const PORT = 8080;
 // For Angular => PORT = 4200
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`.bgCyan.white);
 });
