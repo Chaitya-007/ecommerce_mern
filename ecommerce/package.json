@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Chaitya",
+  "license": "ISC",
+  "description": "ecommerce rest api",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
