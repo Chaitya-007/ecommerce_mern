@@ -1,1 +1,1 @@
-export const resgisterController = () => {};
+export const registerController = () => {};
