@@ -1,4 +1,6 @@
-import { hashPassword } from "./../helpers/authHelper";
+import { hashPassword } from "./../helpers/authHelper.js";
+import userSchema from "./../models/userModel.js";
+
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address, role } = req.body;
