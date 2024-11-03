@@ -103,3 +103,14 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+export const testController = (req, res) => {
+  try {
+    res.status(200).send({ message: "Test controller" });
+  } catch (error) {
+    console.log({
+      message: "error in controller",
+      error,
+    });
+  }
+};
