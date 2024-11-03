@@ -1,5 +1,5 @@
 import { hashPassword } from "./../helpers/authHelper.js";
-import userSchema from "./../models/userModel.js";
+import userSchema from "../models/userModel.js";
 
 export const registerController = async (req, res) => {
   try {
@@ -20,22 +20,19 @@ export const registerController = async (req, res) => {
     if (!address) {
       return res.send({ message: "Address is Required" });
     }
-    if (!role) {
-      return res.send({ message: "Role is required" });
-    }
 
     const existingUser = await userSchema.findOne({ email });
 
     if (existingUser) {
       return res.status(500).send({
-        success: true,
+        success: false,
         message: "User already exists, please login",
       });
     }
 
     const hashedPassword = await hashPassword(password);
 
-    const newUser = new userSchema({
+    const newUser = await new userSchema({
       name,
       email,
       password: hashedPassword,
@@ -44,8 +41,8 @@ export const registerController = async (req, res) => {
       role,
     }).save();
 
-    return res
-      .send(201)
+    res
+      .status(201)
       .send({ success: true, message: "User created successfully", newUser });
   } catch (error) {
     console.log(error);
