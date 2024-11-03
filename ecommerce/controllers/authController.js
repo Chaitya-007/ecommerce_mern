@@ -1,5 +1,6 @@
 import { hashPassword } from "./../helpers/authHelper.js";
 import userSchema from "../models/userModel.js";
+import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
