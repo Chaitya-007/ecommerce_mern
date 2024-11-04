@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 
 const PageNotFount = () => {
   return (
-    <Layout>
+    <Layout title={"go back - page not found"}>
       <div className="pnf">
         <h1>404 </h1>
         <h2>Oops! Page Not Found</h2>
