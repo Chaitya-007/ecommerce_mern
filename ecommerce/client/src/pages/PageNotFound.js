@@ -4,7 +4,11 @@ import Layout from "../components/Layout/Layout";
 const PageNotFount = () => {
   return (
     <Layout>
-      <h1>Page Not Found</h1>
+      <div className="pnf">
+        <h1>404 </h1>
+        <h2>Oops! Page Not Found</h2>
+        <button className="pnf-button">Go Back</button>
+      </div>
     </Layout>
   );
 };
