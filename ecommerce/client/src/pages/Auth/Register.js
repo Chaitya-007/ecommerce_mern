@@ -8,11 +8,11 @@ const Register = () => {
         <h1>Register</h1>
         <form>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+            <label htmlFor="exampleInputName" className="form-label">
+              Name
             </label>
             <input
-              type="email"
+              type="text"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -28,16 +28,7 @@ const Register = () => {
               id="exampleInputPassword1"
             />
           </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
-          </div>
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
