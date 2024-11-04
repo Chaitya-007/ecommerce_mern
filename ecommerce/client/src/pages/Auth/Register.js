@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -9,9 +11,34 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(name, email, password, phone, address);
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        {
+          name,
+          email,
+          password,
+          phone,
+          address,
+        }
+      );
+
+      if (res && res.data.success) {
+        toast.success(res.data && res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log("Register Error", error);
+      toast.error("Register Error");
+    }
     toast.success("Register Success");
   };
 
