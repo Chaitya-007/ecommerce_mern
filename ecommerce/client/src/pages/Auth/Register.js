@@ -8,24 +8,47 @@ const Register = () => {
         <h1>Register</h1>
         <form>
           <div className="mb-3">
-            <label htmlFor="exampleInputName" className="form-label">
-              Name
-            </label>
             <input
               type="text"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              placeholder="Enter Name"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div className="mb-3">
             <input
               type="password"
               className="form-control"
               id="exampleInputPassword1"
+              placeholder="Enter Password"
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter Phone"
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter Address"
             />
           </div>
 
