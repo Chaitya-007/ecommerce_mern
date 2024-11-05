@@ -5,11 +5,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
+import { useSnackbar } from "notistack";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
 
   const navigate = useNavigate();
 
@@ -27,7 +29,9 @@ const Login = () => {
       );
 
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+        // toast.success(res.data && res.data.message);
+        const message = res.data && res.data.message;
+        enqueueSnackbar(message, { variant: "success" });
         setAuth({
           ...auth,
           user: res.data.user,
@@ -36,11 +40,13 @@ const Login = () => {
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
-        toast.error(res.data.message);
+        // toast.error(res.data.message);
+        enqueueSnackbar(res.data.message, { variant: "error" });
       }
     } catch (error) {
       console.log("Register Error", error);
-      toast.error("Register Error");
+      // toast.error("Register Error");
+      enqueueSnackbar("Register Error", { variant: "error" });
     }
   };
 
