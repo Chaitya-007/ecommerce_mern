@@ -5,34 +5,28 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/AuthStyles.css";
 
-const Register = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, password, phone, address);
+    console.log(email, password);
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        `${process.env.REACT_APP_API}/api/v1/auth/login`,
         {
-          name,
           email,
           password,
-          phone,
-          address,
         }
       );
 
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate("/login");
+        navigate("/");
       } else {
         toast.error(res.data.message);
       }
@@ -45,19 +39,8 @@ const Register = () => {
   return (
     <Layout title={"Regiser Ecommerce App"}>
       <div className="form-container">
-        <h1>Register</h1>
+        <h1>LOGIN FORM</h1>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={name}
-              className="form-control"
-              id="exampleInputName"
-              placeholder="Enter Name"
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
           <div className="mb-3">
             <input
               type="email"
@@ -80,28 +63,6 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputPhone"
-              placeholder="Enter Phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputAddress"
-              value={address}
-              placeholder="Enter Address"
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </div>
 
           <button type="submit" className="btn btn-primary">
             Submit
@@ -112,4 +73,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
