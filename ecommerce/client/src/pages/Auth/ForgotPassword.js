@@ -7,9 +7,10 @@ import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 import { useSnackbar } from "notistack";
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setnewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
   const [auth, setAuth] = useAuth();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -17,14 +18,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/login`,
+        `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
         {
           email,
-          password,
+          newPassword,
+          answer,
         }
       );
 
@@ -32,13 +34,8 @@ const Login = () => {
         // toast.success(res.data && res.data.message);
         const message = res.data && res.data.message;
         enqueueSnackbar(message, { variant: "success" });
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/");
+
+        navigate("/login");
       } else {
         // toast.error(res.data.message);
         enqueueSnackbar(res.data.message, { variant: "error" });
@@ -51,9 +48,9 @@ const Login = () => {
   };
 
   return (
-    <Layout title={"Regiser Ecommerce App"}>
+    <Layout title={"Forgot Password Ecommerce App"}>
       <div className="form-container">
-        <h1>LOGIN FORM</h1>
+        <h1>RESET PASSWORD</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
@@ -68,27 +65,29 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <input
-              type="password"
+              type="text"
               className="form-control"
-              id="exampleInputPassword"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="exampleInputEmail1"
+              value={answer}
+              placeholder="Enter your favourite sports ?"
+              onChange={(e) => setAnswer(e.target.value)}
               required
             />
           </div>
           <div className="mb-3">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={() => navigate("/forgot-password")}
-            >
-              Forgot Password
-            </button>
+            <input
+              type="password"
+              className="form-control"
+              id="exampleInputPassword"
+              placeholder="Enter New Password"
+              value={newPassword}
+              onChange={(e) => setnewPassword(e.target.value)}
+              required
+            />
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Login
+            Reset
           </button>
         </form>
       </div>
@@ -96,4 +95,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

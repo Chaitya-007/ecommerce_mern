@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/AuthStyles.css";
+import { useSnackbar } from "notistack";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
 
   const navigate = useNavigate();
 
@@ -33,14 +35,15 @@ const Register = () => {
       );
 
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+        enqueueSnackbar(res.data && res.data.message, { variant: "success" });
         navigate("/login");
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
       console.log("Register Error", error);
-      toast.error("Register Error");
+      // toast.error("Register Error");
+      enqueueSnackbar("Register Error", { variant: "error" });
     }
   };
 
