@@ -1,0 +1,3 @@
+code -r folder_name => this will open the editor in the project
+npm create vite@latest 
+=> . =>press dot when asked for folder name=> this will make your current folder as your name
